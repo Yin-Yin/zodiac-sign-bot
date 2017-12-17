@@ -6,7 +6,7 @@ module.exports = {
   getResponse: function(intentName, parameters, contexts) {
     return new Promise((resolve, reject) => {
       console.log("Triggerd intent: " + intentName + "with params: " + parameters + ".")
-      
+
       switch (intentName) {
         // ## zodiac signs ##
         case 'zodiacsign.check':
@@ -191,6 +191,14 @@ module.exports = {
 
           let quickRepliesTitle = "Want to know more about " + zodiacSign + "?"
           let quickRepliesButtons = ["Info"]
+
+          for (var i = 0; i < contexts.length; i++) { // this surely could be done better!
+            console.log("Iterating over contexts ... ")
+            if (contexts[i].name === "info-shown") {
+              let quickRepliesTitle = ""
+              let quickRepliesButtons = []
+            }
+          }
 
           for (var i = 0; i < contexts.length; i++) {
             console.log("Iterating over contexts ... ")
