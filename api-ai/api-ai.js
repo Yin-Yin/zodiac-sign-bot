@@ -65,7 +65,7 @@ module.exports = {
 
     let responseMessageText = "Your zodiac sign is " + zodiacSign + "."
 
-    let quickRepliesTitle = "Want to know more?"
+    let quickRepliesTitle = "To find out more about " + zodiacSign + ", select from the buttons below.";
     let quickRepliesButtons = '';
 
     let contextOut = [];
@@ -102,14 +102,14 @@ module.exports = {
     let responseMessageText = zodiacSignModule.getZodiacSignInfo(zodiacSign);
     let zodiacSignPicturUrl = zodiacSignModule.getZodiacSignPictureUrl(zodiacSign); //toDo: rename to Image to be conssitent
 
-    let quickRepliesTitle = "Do you want to see the horoscope for " + zodiacSign + "?"
+    let quickRepliesTitle = "Select 'horoscope' below or type it out to get the horoscope for " + zodiacSign + "."
     let quickRepliesButtons = ["Horoscope"]
 
     // add more quick reply buttons if a context is given
     for (var i = 0; i < contexts.length; i++) {
       if (contexts[i].name === "year") {
         quickRepliesButtons.push("Chinese Zodiac")
-        quickRepliesTitle = "Do you want to see the horoscope for " + zodiacSign + " or find out the Chinese Zodiac Sign?"
+        quickRepliesTitle = "You can get the horoscope for " + zodiacSign + " or find out the Chinese Zodiac Sign for the date. (Tap on one of the buttons below.)"
       }
     }
 
@@ -159,7 +159,7 @@ module.exports = {
       }
     }
 
-    let quickRepliesTitle = "Want to know more about the zodiac sign " + zodiacSign + "?"
+    let quickRepliesTitle = "You can find out more about " + zodiacSign + ". Select below or type 'info' for more information or 'horoscope' to get the horoscope."
     let quickRepliesButtons = ["Horoscope", "Info"]
 
     response = this.getZodiacSignYearResponse(providedYear);
@@ -189,13 +189,13 @@ module.exports = {
       zodiacSignModule.getHoroscope(zodiacSign).then(
         (horoscope) => {
 
-          let quickRepliesTitle = "Want to know more about " + zodiacSign + "?"
+          let quickRepliesTitle = "To know more about " + zodiacSign + " type 'info' or tap on the button below."
           let quickRepliesButtons = ["Info"]
 
           for (var i = 0; i < contexts.length; i++) { // this surely could be done better!
             console.log("Iterating over contexts ... ")
-            // if (contexts[i].name === "info-shown" && contexts[i].zodiacsign === zodiacSign) {
-            if (contexts[i].name === "info-shown") {
+            if (contexts[i].name === "info-shown" && contexts[i].parameters.zodiacsign === zodiacSign) {
+            // if (contexts[i].name === "info-shown") {
               console.log("contexts[i].zodiacsign: ", contexts[i].parameters.zodiacsign + "  zodiacSign: ", zodiacSign)
               quickRepliesTitle = ""
               quickRepliesButtons = []
@@ -206,7 +206,7 @@ module.exports = {
           for (var i = 0; i < contexts.length; i++) {
             console.log("Iterating over contexts ... ")
             if (contexts[i].name === "year") {
-              quickRepliesTitle = "Do you want to get more information about " + zodiacSign + " or find out your Chinese Zodiac Sign?"
+              quickRepliesTitle = "You can get more information on " + zodiacSign + " or find out your Chinese Zodiac Sign."
               quickRepliesButtons.push("Chinese Zodiac")
             }
           }
