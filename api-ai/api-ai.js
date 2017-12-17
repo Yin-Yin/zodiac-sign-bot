@@ -5,7 +5,7 @@ module.exports = {
   // ## API.ai intents ##
   getResponse: function(intentName, parameters, contexts) {
     return new Promise((resolve, reject) => {
-      console.log("Triggerd intent: " , intentName , "with params: " , parameters , ".")
+      console.log("Triggerd intent: ", intentName, "with params: ", parameters, ".")
 
       switch (intentName) {
         // ## zodiac signs ##
@@ -196,6 +196,7 @@ module.exports = {
             console.log("Iterating over contexts ... ")
             // if (contexts[i].name === "info-shown" && contexts[i].zodiacsign === zodiacSign) {
             if (contexts[i].name === "info-shown") {
+              console.log("contexts[i].zodiacsign: ", contexts[i].zodiacsign + "  zodiacSign: ", zodiacSign)
               quickRepliesTitle = ""
               quickRepliesButtons = []
               console.log("info-shown found -> delete quickRepliesButtons")
