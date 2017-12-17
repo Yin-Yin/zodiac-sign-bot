@@ -194,7 +194,8 @@ module.exports = {
 
           for (var i = 0; i < contexts.length; i++) { // this surely could be done better!
             console.log("Iterating over contexts ... ")
-            if (contexts[i].name === "info-shown" && contexts[i].zodiacsign === zodiacSign) {
+            // if (contexts[i].name === "info-shown" && contexts[i].zodiacsign === zodiacSign) {
+            if (contexts[i].name === "info-shown") {
               quickRepliesTitle = ""
               quickRepliesButtons = []
               console.log("info-shown found -> delete quickRepliesButtons")
