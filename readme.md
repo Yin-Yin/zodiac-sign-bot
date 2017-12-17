@@ -34,16 +34,16 @@ The code here on github is the webhook for dialogflow (api.ai). Dialogflow (api.
 
 **Known bugs**: 
 - When there are quick actions visible and you are away for more than 10 (?) minutes the context is lost and the user will be asked for input again. This is a limitation from the dialogflow plattform and cannot easily be avoided at the moment.
-- If there is no zodiac-sign context and the info intent is triggered by typing "info", the user is asked for a zodiac sign. Most inputs are fine, but if the user inputs "cancel" a request to the backend is send and the quick reply for a horoscope is returned. -> When we input "stop" it works and the question is cancelled. I think the problem is that "cancel" is very close to "cancer" and the machine learning model is confused.
-- Telegram: the buttons are cut off, when there are more than I think three buttons on the screen. Could be avoided by sending specific payload with instructions for Telegram.
+- Telegram: the buttons are cut off, when there are more than I think three buttons on the screen. Could be avoided by sending specific payload with instructions for Telegram. (Fixed for the 'help' command)
 
 **Improvements**
 - I like the idea to give feedback directly from the chatbot itself.
 - From the UX perspective it would be desirable to have a consistent feel to the chatbot. Like having the same type of pictures and same type of texts for all responses.
 - Daily Horoscope: Sending a daily horoscope to the user would be a great feature. However for this we would need persistence, which would require a database.
+- New feature idea: compability of star signs
 
 **to dos**:
-- Imprive texts of quick reply buttons
+- Improve texts of quick reply buttons
 - Improve texts of zodiac signs
 - Improve pictures of zodiac signs: get smaller sizes of pictures to save bandwith of users 
 - Host the pictures on own server to avoid hotlinking
