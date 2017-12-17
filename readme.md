@@ -43,7 +43,7 @@ The code here on github is the webhook for dialogflow (api.ai). Dialogflow (api.
 - New feature idea: compability of star signs
 
 **to dos**:
-- Improve texts of quick reply buttons
+- Improve texts of quick reply buttons (the same text for all quickreply-texts to make it easier for the user to choose)
 - Improve texts of zodiac signs
 - Improve pictures of zodiac signs: get smaller sizes of pictures to save bandwith of users 
 - Host the pictures on own server to avoid hotlinking
