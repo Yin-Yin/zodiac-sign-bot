@@ -222,7 +222,7 @@ module.exports = {
 
   // ### construct the reponse objects for dialogflow (api.ai) ###
 
-  getResponseMessageObject: function(messageText) { // may be it would be better to call this a more specific name: like getResponseMessageObjectObject - because what we are doing here is creating an object!
+  getResponseMessageObject: function(messageText) {
     return {
       "type": 0,
       "speech": messageText

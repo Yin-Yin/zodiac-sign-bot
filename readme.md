@@ -33,17 +33,18 @@ The bot also knows a bit of small talk.
 The code here on github is the webhook for dialogflow (api.ai). Dialogflow (api.ai) provides all the natural language processing and chat functionality for the user. This webhook provides all the additional functionality like calculating the zodiac signs for the provided dates.
 
 **Known bugs**: 
-- When there are quick actions visible and you are away for more than 10 (?) minutes the context is lost and the user will be asked for input again. 
-- If there is no zodiac-sign context and the info intent is triggered by typing "info", the user is aske for a zodiac sign. Most inputs are fine, but if the user inputs "cancel" a request to the backend is send and the quick reply for a horoscope is returned. -> When we input "stop" it works and the question is cancelled. I think the problem is that "cancel" is very close to "cancer" and the machine learning model is confused.
+- When there are quick actions visible and you are away for more than 10 (?) minutes the context is lost and the user will be asked for input again. This is a limitation from the dialogflow plattform and cannot easily be avoided at the moment.
+- If there is no zodiac-sign context and the info intent is triggered by typing "info", the user is asked for a zodiac sign. Most inputs are fine, but if the user inputs "cancel" a request to the backend is send and the quick reply for a horoscope is returned. -> When we input "stop" it works and the question is cancelled. I think the problem is that "cancel" is very close to "cancer" and the machine learning model is confused.
+- Telegram: the buttons are cut off, when there are more than I think three buttons on the screen. Could be avoided by sending specific payload with instructions for Telegram.
 
 **Improvements**
-- A big issue I see is that some users type 'yes' to confirm for the titles of quick replies. For example after the zodiacSign.check intent the user is asked: "Dou you want to see the horoscope?" or for the standard intent it was before: "Do you need help?". It would be natural to answer this question with 'yes', one would expect the bot to fufill his request. At the moment this is not the case. How can this be done with dialogflow?
-- Make quick responses smarter: I would like to not show the quick responses all the time. For example if I press the quick response for horoscope and then when I get the horoscope I press the info button, under the info text the horoscope button will appear again. I don't want to show the button again in this case, because it is redundant and gets the user in a kind of loop. 
-- A way to achieve this would be to memorize which button we have shown with an output context. Or remember in the context out which button we don't want to show for the next 3 or something times. A concern about this is that the code gets really complicated. Also is this transparent for the user?
 - I like the idea to give feedback directly from the chatbot itself.
 - From the UX perspective it would be desirable to have a consistent feel to the chatbot. Like having the same type of pictures and same type of texts for all responses.
+- Daily Horoscope: Sending a daily horoscope to the user would be a great feature. However for this we would need persistence, which would require a database.
 
 **to dos**:
-- improve texts of zodiac signs
-- improve pictures of zodiac signs: get smaller sizes of pictures to save bandwith of users and host them on own server to avoid hotlinking
+- Imprive texts of quick reply buttons
+- Improve texts of zodiac signs
+- Improve pictures of zodiac signs: get smaller sizes of pictures to save bandwith of users 
+- Host the pictures on own server to avoid hotlinking
 - Code enhancements: Make functions smaller - only one functionality per function, for example: getting the contexts out
