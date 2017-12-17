@@ -197,6 +197,7 @@ module.exports = {
             if (contexts[i].name === "info-shown") {
               let quickRepliesTitle = ""
               let quickRepliesButtons = []
+              console.log("info-shown found -> delete quickRepliesButtons")
             }
           }
 
