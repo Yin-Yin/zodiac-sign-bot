@@ -192,19 +192,16 @@ module.exports = {
           let quickRepliesTitle = "To know more about " + zodiacSign + " type 'info' or tap on the button below."
           let quickRepliesButtons = ["Info"]
 
-          for (var i = 0; i < contexts.length; i++) { // this surely could be done better!
-            console.log("Iterating over contexts ... ")
-            if (contexts[i].name === "info-shown" && contexts[i].parameters.zodiacsign === zodiacSign) {
-            // if (contexts[i].name === "info-shown") {
-              console.log("contexts[i].zodiacsign: ", contexts[i].parameters.zodiacsign + "  zodiacSign: ", zodiacSign)
+          for (var i = 0; i < contexts.length; i++) {
+            // console.log("Iterating over contexts ... ")
+            if (contexts[i].name === "info-shown") { // it would be nice to also check if the info for the zodiac sign has already been shown, however '&& contexts[i].parameters.zodiacsign === zodiacSign' doesnt work, because the zodiac sign value here is filled from other intents as well. We could fix this by assigning a new value that is only filled when the info or info-context intent is invoked, like "zodiacsigninfo", which contains the paramater value for the zodiacsign that has been shown 
               quickRepliesTitle = ""
               quickRepliesButtons = []
-              console.log("info-shown found -> delete quickRepliesButtons")
             }
           }
 
           for (var i = 0; i < contexts.length; i++) {
-            console.log("Iterating over contexts ... ")
+            // console.log("Iterating over contexts ... ")
             if (contexts[i].name === "year") {
               quickRepliesTitle = "You can get more information on " + zodiacSign + " or find out your Chinese Zodiac Sign."
               quickRepliesButtons.push("Chinese Zodiac")
