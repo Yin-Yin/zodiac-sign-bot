@@ -121,8 +121,7 @@ module.exports = {
           let parsedBody = JSON.parse(body);
           // console.log(body + '/n' + requestUrl);
           console.log("Horoscope for " + zodiacSign + " requested successfully.")
-          let horoscopeText = JSON.parse(parsedBody.horoscope);
-          let horoscope = "The horoscope for " + zodiacSign + " for today is: \n" + horoscopeText[0];
+          let horoscope = "The horoscope for " + zodiacSign + " for today is: \n" + parsedBody.horoscope;
           resolve(horoscope);
         }
         else {
