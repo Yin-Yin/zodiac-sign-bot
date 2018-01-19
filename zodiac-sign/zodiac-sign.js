@@ -121,7 +121,12 @@ module.exports = {
           let parsedBody = JSON.parse(body);
           // console.log(body + '/n' + requestUrl);
           console.log("Horoscope for " + zodiacSign + " requested successfully.")
-          let horoscope = "The horoscope for " + zodiacSign + " for today is: \n" + parsedBody.horoscope;
+          
+          // cut first and last two characters of string - hack in the train, exchange with better solution 
+          let horoscopeText = parsedBody.horoscope.slice(2);
+          horoscopeText = horoscopeText.slice(horoscopeText.length, -2);
+          
+          let horoscope = "The horoscope for " + zodiacSign + " for today is: \n" + horoscopeText;
           resolve(horoscope);
         }
         else {
