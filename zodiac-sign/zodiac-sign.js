@@ -124,7 +124,7 @@ module.exports = {
           
           // cut first and last two characters of string - hack in the train, exchange with better solution 
           let horoscopeText = parsedBody.horoscope.slice(2);
-          let horoscopeTextMoreSliced = horoscopeText.slice(horoscopeText.length, -2);
+          let horoscopeTextMoreSliced = horoscopeText.slice(0, -2);
           
           let horoscope = "The horoscope for " + zodiacSign + " for today is: \n" + horoscopeTextMoreSliced;
           resolve(horoscope);
