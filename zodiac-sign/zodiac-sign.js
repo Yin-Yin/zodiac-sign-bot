@@ -123,10 +123,10 @@ module.exports = {
           console.log("Horoscope for " + zodiacSign + " requested successfully.")
           
           // cut first and last two characters of string - hack in the train, exchange with better solution 
-          let horoscopeText = parsedBody.horoscope.slice(2);
-          horoscopeText = horoscopeText.slice(horoscopeText.length, -2);
+          // let horoscopeText = parsedBody.horoscope.slice(2);
+          // horoscopeText = horoscopeText.slice(horoscopeText.length, -2);
           
-          let horoscope = "The horoscope for " + zodiacSign + " for today is: \n" + horoscopeText;
+          let horoscope = "The horoscope for " + zodiacSign + " for today is: \n" + parsedBody.horoscope.slice(2);
           resolve(horoscope);
         }
         else {
