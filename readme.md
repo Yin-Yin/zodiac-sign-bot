@@ -19,7 +19,7 @@ Give the bot a year or an age, and the bot will thell you the correlating chines
 **Input Examples**: "1992", "21", "age 41" "chinese zodiac 1965"; *with context*: "chinese zodiac"
 
 4. **Horoscope.**
-The bot can give you horoscopes. Type "horoscope" to get the horoscope for pisces. The horoscopes are fetched from this API: http://sandipbgt.com/theastrologer-api/.
+The bot can give you horoscopes. Type "horoscope" to get the horoscope for pisces. The horoscopes are fetched from this API: https://github.com/tapasweni-pathak/Horoscope-API ( -http://sandipbgt.com/theastrologer-api/- ).
 **Input Examples**: "horoscope pisces"; *with context*: "horoscope"
 
 5. **Help**
