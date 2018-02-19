@@ -19,7 +19,7 @@ Give the bot a year or an age, and the bot will thell you the correlating chines
 **Input Examples**: "1992", "21", "age 41" "chinese zodiac 1965"; *with context*: "chinese zodiac"
 
 4. **Horoscope.**
-The bot can give you horoscopes. Type "horoscope" to get the horoscope for pisces. The horoscopes are fetched from this API: https://github.com/tapasweni-pathak/Horoscope-API ( -http://sandipbgt.com/theastrologer-api/- ).
+The bot can give you horoscopes. Type "horoscope" to get the horoscope for pisces. The horoscopes are fetched from this API: http://sandipbgt.com/theastrologer-api/ (which fetches horoscopes from https://new.theastrologer.com/).
 **Input Examples**: "horoscope pisces"; *with context*: "horoscope"
 
 5. **Help**
@@ -32,19 +32,22 @@ The bot also knows a bit of small talk.
 
 The code here on github is the webhook for dialogflow (api.ai). Dialogflow (api.ai) provides all the natural language processing and chat functionality for the user. This webhook provides all the additional functionality like calculating the zodiac signs for the provided dates.
 
-**Known bugs**: 
+**Known bugs**
 - When there are quick actions visible and you are away for more than 10 (?) minutes the context is lost and the user will be asked for input again. This is a limitation from the dialogflow plattform and cannot easily be avoided at the moment.
 - Telegram: the buttons are cut off, when there are more than I think three buttons on the screen. Could be avoided by sending specific payload with instructions for Telegram. (Fixed for the 'help' command)
 
 **Improvements**
 - I like the idea to give feedback directly from the chatbot itself.
-- From the UX perspective it would be desirable to have a consistent feel to the chatbot. Like having the same type of pictures and same type of texts for all responses.
+- UX improvement: it would be desirable to have a consistent feel to the chatbot. Like having the same type of pictures and same type of texts for all responses.
 - Daily Horoscope: Sending a daily horoscope to the user would be a great feature. However for this we would need persistence, which would require a database.
 - New feature idea: compability of star signs
 
-**to dos**:
+**to dos**
 - Improve texts of quick reply buttons (the same text for all quickreply-texts to make it easier for the user to choose)
 - Improve texts of zodiac signs
 - Improve pictures of zodiac signs: get smaller sizes of pictures to save bandwith of users 
 - Host the pictures on own server to avoid hotlinking
 - Code enhancements: Make functions smaller - only one functionality per function, for example: getting the contexts out
+ 
+**Questions**
+- __Deplyoment__: I received a question about an error about an error on deployment: As far as I could tell the code was deployed on google. I have deployed this code only on Heroku, where it was working like this. If you want to deploy it on another plattform the configuration might need to be adapted.
