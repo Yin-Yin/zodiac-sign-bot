@@ -26,8 +26,9 @@ app.post('/intent', function(req, res) {
   //es.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
   
   apiAiModule.getResponse(intentName,parameters,contexts).then((response) =>
+  // "speech" is the spoken version of the response, "displayText" is the visual version, "messages" are for the different messengers, "contextOut" is the context for api.ai
+  // Don't build the response JSON here, led to errors while developing
   res.send(JSON.stringify({
-    //"speech" is the spoken version of the response, "displayText" is the visual version, "messages" are for the different messengers, "contextOut" is the context for api.ai
     "speech": response.speech,
     "displayText": response.displayText,
     "messages": response.messages,

@@ -47,7 +47,10 @@ The code here on github is the webhook for dialogflow (api.ai). Dialogflow (api.
 - Improve texts of zodiac signs
 - Improve pictures of zodiac signs: get smaller sizes of pictures to save bandwith of users 
 - Host the pictures on own server to avoid hotlinking
-- Code enhancements: Make functions smaller - only one functionality per function, for example: getting the contexts out
+- Code enhancements: 
+    - Make functions smaller - only one functionality per function, for example: getting the contexts out
+    - don't build the response in index.js - prone to errors
+    - clearer separation of responsibilities - have express in own folder/file
  
 **Questions**
 - __Deplyoment__: I received a question about an error about an error on deployment: As far as I could tell the code was deployed on google. I have deployed this code only on Heroku, where it was working like this. If you want to deploy it on another plattform the configuration might need to be adapted.
