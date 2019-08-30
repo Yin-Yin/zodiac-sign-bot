@@ -1,3 +1,5 @@
+/*
+
 'use strict';
 const { WebhookClient } = require('dialogflow-fulfillment');
 const { Card, Suggestion } = require('dialogflow-fulfillment');
@@ -108,6 +110,7 @@ module.exports = {
         /* 
         Give the user a picture and information about a zodiac sign. 
         */
+       /*
         function zodiacInfo(agent) {
             let zodiacSign = parameters.zodiacsign;
             console.log("getting infor for zodiac sign: ", zodiacSign);
@@ -173,6 +176,7 @@ module.exports = {
         /* 
         Give the user the chinese zodiac sign for a year or age he provides. 
         */
+       /*
         function zodiacYear(agent) {
             //parameters.age.amount
 
@@ -182,6 +186,7 @@ module.exports = {
           This is the same function as getZodiacSignYearResponse with the difference, that we want to take the year from the context (user has given it before)
           and we want to leave the user the possibility to get more information about the zodiac sign from the context.
         */
+       /*
         function zodiacYearContext(agent) {
             // contexts
 
@@ -191,6 +196,7 @@ module.exports = {
           Get a list of all zodiac signs to enhance user experience: the user can just select the zodiac sign that he likes. 
           It is done here in the backend, because in dialogflow (api.ai) the maximum list number is limited to 10 and we have 12 zodiac signs.
         */
+       /*
         function zodiacList(agent) {
 
         }
@@ -198,6 +204,7 @@ module.exports = {
         /*
         Fetch the horoscope for a provided zodiac sign from an API.
         */
+       /*
         function zodiacHoroscope(agent) {
             // parameters.zodiacsign, contexts
 
@@ -304,7 +311,7 @@ getZodiacSignInfoResponse: function(zodiacSign, contexts) {
         return response;
     },*/
 
-
+/*
 getZodiacSignYearResponse: function(year) {
 
     },
@@ -414,3 +421,5 @@ getZodiacSignYearResponse: function(year) {
     },
 
 }
+
+*/
