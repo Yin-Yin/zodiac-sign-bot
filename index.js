@@ -3,7 +3,7 @@ var bodyParser = require('body-parser')
 var express = require('express');
 var app = express();
 var apiAiModule = require('./api-ai/api-ai.js')
-var dialogFlowModule = require('./dialogflow/dialogflow.js')
+// var dialogFlowModule = require('./dialogflow/dialogflow.js')
 
 app.use((req, res, next) => {
 
@@ -63,11 +63,13 @@ app.post('/intent', function(req, res) {
   )
 })
 
+/*
 //dialogflow v 2
 app.post('/dialogflow', function(req, res) {
   console.log("app post /dialogflow");
   dialogFlowModule.handleRequest(req, res);
 })
+*/
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
