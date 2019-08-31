@@ -1,5 +1,3 @@
-/*
-
 'use strict';
 const { WebhookClient } = require('dialogflow-fulfillment');
 const { Card, Suggestion } = require('dialogflow-fulfillment');
@@ -27,6 +25,7 @@ module.exports = {
         // Uncomment and edit to make your own intent handler
         // uncomment `intentMap.set('your intent name here', yourFunctionHandler);`
         // below to get this function to be run when a Dialogflow intent is matched
+        /*
         function yourFunctionHandler(agent) {
             agent.add(`This message is from Dialogflow's Cloud Functions for Firebase editor!`);
             agent.add(new Card({
@@ -40,6 +39,7 @@ module.exports = {
             agent.add(new Suggestion(`Suggestion`));
             agent.setContext({ name: 'weather', lifespan: 2, parameters: { city: 'Rome' } });
         }
+        */
 
         /* 
         If a user enters a date we calculate the zodiac sign.
@@ -90,9 +90,6 @@ module.exports = {
             response.messages = [this.getResponseMessageObject(responseMessageText), this.getQuickRepliesObject(quickRepliesTitle, quickRepliesButtons)];
             response.contextOut = contextOut;
             return response;
-
-
-
             agent.add(`This message is from Dialogflow's Cloud Functions for Firebase editor!`);
             agent.add(new Card({
                 title: `Title: this is a card title`,
@@ -110,12 +107,11 @@ module.exports = {
         /* 
         Give the user a picture and information about a zodiac sign. 
         */
-       /*
         function zodiacInfo(agent) {
             let zodiacSign = parameters.zodiacsign;
             console.log("getting infor for zodiac sign: ", zodiacSign);
-            let contexts = inputContexts;
-            console.log("getting infor for context: ", contexts);
+            //let contexts = inputContexts;
+            console.log("getting info for context: ", inputContexts);
 
             //     getZodiacSignInfoResponse: function(zodiacSign, contexts) {
             let responseMessageText = zodiacSignModule.getZodiacSignInfo(zodiacSign);
@@ -127,8 +123,8 @@ module.exports = {
             agent.add(new Suggestion(`Horoscope`));
 
             // add more quick reply buttons if a context is given
-            for (var i = 0; i < contexts.length; i++) {
-                if (contexts[i].name === "year") {
+            for (var i = 0; i < inputContexts.length; i++) {
+                if (inputContexts[i].name === "year") {
                     // quickRepliesButtons.push("Chinese Zodiac")
                     agent.add(new Suggestion(`Chinese Zodiac`));
                     //quickRepliesTitle = "You can get the horoscope for " + zodiacSign + " or find out the Chinese Zodiac Sign for the date. (Tap on one of the buttons below.)"
@@ -154,16 +150,37 @@ module.exports = {
 
 
         function zodiacInfoContext(agent) {
-            //parameters.zodiacsign, contexts
-            inputContexts
 
+        }
+
+        /* 
+        Give the user the chinese zodiac sign for a year or age he provides. 
+        */
+        function zodiacYear(agent) {
+            //parameters.age.amount
+
+            //, inputContexts
+            // let zodiacSign = parameters.zodiacsign
+            //let year = parameters.year;
+            let year = parameters.age.amount
+            let chineseZodiacSign = zodiacSignModule.getChineseZodiacSign(year);
+            let chineseZodiacSignImageUrl = zodiacSignModule.getChineseZodiacSignPictureUrl(year);
+            let responseMessageText = "Your chinese zodiac sign is " + chineseZodiacSign + "."
+
+            agent.add(new Card({
+                title: chineseZodiacSign,
+                imageUrl: chineseZodiacSignImageUrl,
+                text: responseMessageText
+            }));
+            //agent.setContext({ name: 'year', lifespan: 4, parameters: { "age": year } }); // toDo: not sure if this is correct - check!
+
+            //-------
+            
             /*
             let chineseZodiacSign = zodiacSignModule.getChineseZodiacSign(year);
             let chineseZodiacSignPicturUrl = zodiacSignModule.getChineseZodiacSignPictureUrl(year);
-
             let responseMessageText = "Your chinese zodiac sign is " + chineseZodiacSign + "."
             let yearParameters = { "age": { "amount": year } }
-
             response.speech = responseMessageText
             response.displayText = responseMessageText
             response.messages = [this.getImageObject(chineseZodiacSignPicturUrl), this.getResponseMessageObject(responseMessageText)];
@@ -171,14 +188,6 @@ module.exports = {
             response.contextOut = [this.getContextOutObject("year", yearParameters, 0)]
             return response;
             */
-        }
-
-        /* 
-        Give the user the chinese zodiac sign for a year or age he provides. 
-        */
-       /*
-        function zodiacYear(agent) {
-            //parameters.age.amount
 
         }
 
@@ -186,7 +195,6 @@ module.exports = {
           This is the same function as getZodiacSignYearResponse with the difference, that we want to take the year from the context (user has given it before)
           and we want to leave the user the possibility to get more information about the zodiac sign from the context.
         */
-       /*
         function zodiacYearContext(agent) {
             // contexts
 
@@ -196,7 +204,6 @@ module.exports = {
           Get a list of all zodiac signs to enhance user experience: the user can just select the zodiac sign that he likes. 
           It is done here in the backend, because in dialogflow (api.ai) the maximum list number is limited to 10 and we have 12 zodiac signs.
         */
-       /*
         function zodiacList(agent) {
 
         }
@@ -204,7 +211,6 @@ module.exports = {
         /*
         Fetch the horoscope for a provided zodiac sign from an API.
         */
-       /*
         function zodiacHoroscope(agent) {
             // parameters.zodiacsign, contexts
 
@@ -214,6 +220,8 @@ module.exports = {
             // parameters.zodiacsign, contexts
 
         }
+
+
 
 
         // Run the proper function handler based on the matched Dialogflow intent name
@@ -235,47 +243,38 @@ module.exports = {
 
 /*
 ____
-
 switch (intentName) {
     // ## zodiac signs ##
     case 'zodiacsign.check':
         resolve(this.getZodiacSignCheckResponse(parameters.date))
         break;
-
     case 'zodiacsign.info':
         resolve(this.getZodiacSignInfoResponse(parameters.zodiacsign, contexts))
         break;
-
     case 'zodiacsign.info.context':
         resolve(this.getZodiacSignInfoResponse(parameters.zodiacsign, contexts))
         break;
-
     case 'zodiacsign.year':
         resolve(this.getZodiacSignYearResponse(parameters.age.amount))
         break;
-
     case 'zodiacsign.year.context':
         resolve(this.getZodiacSignYearContextResponse(contexts))
         break;
-
     case 'zodiacsign.list':
         resolve(this.getZodiacSignList())
         break;
-
     case 'zodiacsign.horoscope':
         this.getZodiacSignHoroscopeResponse(parameters.zodiacsign, contexts).
         then((response) => {
             resolve(response)
         })
         break;
-
     case 'zodiacsign.horoscope.context':
         this.getZodiacSignHoroscopeResponse(parameters.zodiacsign, contexts).
         then((response) => {
             resolve(response)
         })
         break;
-
     default:
         console.log("Something went wrong. The default switch case was triggered. This means there was a intent triggered from api.ai that is not yet implemented in the webhook You triggered the intent: " + intentName + ", with the parameters: " + parameters)
         reject("Something went wrong. Sorry about that.")
@@ -283,17 +282,14 @@ switch (intentName) {
 }
 })
 },
-
 // ### Build the responses (messages, pictures and quick replies) for the intents ### 
 */
 /*
 getZodiacSignInfoResponse: function(zodiacSign, contexts) {
         let responseMessageText = zodiacSignModule.getZodiacSignInfo(zodiacSign);
         let zodiacSignPicturUrl = zodiacSignModule.getZodiacSignPictureUrl(zodiacSign); //toDo: rename to Image to be conssitent
-
         let quickRepliesTitle = "Select 'horoscope' below or type it out to get the horoscope for " + zodiacSign + "."
         let quickRepliesButtons = ["Horoscope"]
-
         // add more quick reply buttons if a context is given
         for (var i = 0; i < contexts.length; i++) {
             if (contexts[i].name === "year") {
@@ -301,9 +297,7 @@ getZodiacSignInfoResponse: function(zodiacSign, contexts) {
                 quickRepliesTitle = "You can get the horoscope for " + zodiacSign + " or find out the Chinese Zodiac Sign for the date. (Tap on one of the buttons below.)"
             }
         }
-
         let zodiacSignParameters = { "zodiacsign": zodiacSign }
-
         response.speech = responseMessageText;
         response.displayText = responseMessageText;
         response.messages = [this.getImageObject(zodiacSignPicturUrl), this.getResponseMessageObject(responseMessageText), this.getQuickRepliesObject(quickRepliesTitle, quickRepliesButtons)];
@@ -388,38 +382,5 @@ getZodiacSignYearResponse: function(year) {
         })
     },
 
-    // ### construct the reponse objects for dialogflow (api.ai) ###
+    */
 
-    getResponseMessageObject: function(messageText) {
-        return {
-            "type": 0,
-            "speech": messageText
-        }
-    },
-
-    getQuickRepliesObject: function(title, replies) {
-        return {
-            "type": 2,
-            "title": title,
-            "replies": replies
-        }
-    },
-
-    getImageObject: function(imageUrl) {
-        return {
-            "type": 3,
-            "imageUrl": imageUrl
-        }
-    },
-
-    getContextOutObject: function(name, paremeters, lifespan) {
-        return {
-            "name": name,
-            "parameters": paremeters,
-            "lifespan": lifespan
-        }
-    },
-
-}
-
-*/
