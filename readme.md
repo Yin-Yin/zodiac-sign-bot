@@ -1,4 +1,11 @@
 # Zodiac Sign Bot #
+Fullfillment webhook for the dialogflow api.
+
+# DEPRECATED #
+Due to many changes to dialogflow, this project is put on ice. It was a fun idea and nice to see it in the wild. However the value it gives to the world in relation to the costs does not make it feasible anymore. Anyway, it was just a fun project. 
+
+
+
 This conversational chatbot teaches the user all about zodiac signs. 
 
 You can talk to the bot on Telegram: _'@zodiacsignbot'_ and on kik: _'zodiacsignbot'_.
